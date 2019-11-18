@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # Script name: TrafficLight.py
-# Uses the red yellow and green LEDs to simulate a road traffic light
+# Uses the red, yellow and green LEDs to simulate a road traffic light
 # 
 # Mark Bradley
 # 2019-10-10
