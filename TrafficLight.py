@@ -10,6 +10,8 @@
 # This is a minimal bit of code and has a couple of issues.
 # 1. It never exits, to stop it you have to use <ctrl> + c or click the stop button in Thonny
 # 2. It does not exit cleanly, which ever LED is ON on exit is left ON.
+# 20/11/19
+# Develpment branch to deal with above issues.
 
 # Import additional libraries.
 from gpiozero import LED          #Using gpiozero library, LED object used for each LED
