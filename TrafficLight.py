@@ -4,10 +4,10 @@
 # Uses the red, yellow and green LEDs to simulate a road traffic light
 # 
 # Mark Bradley
-# 2019-10-10
+# 10/10/2019
 
-# 18/11/19
-# This is a minimal bit of code and has a couple of issues.
+# 19/11/19
+# Code divided into functions and methods of exiting cleanley added.
 # 1. It never exits, to stop it you have to use <ctrl> + c or click the stop button in Thonny
 # 2. It does not exit cleanly, which ever LED is ON on exit is left ON.
 # 20/11/19
@@ -37,8 +37,27 @@ def traffic_lights():
     yel_led.on()
     sleep(1.5)
     yel_led.off()
+    
+def clean_exit():
+    # On exit turn all the LEDs off.
+    grn_led.off()
+    red_led.off()
+    yel_led.off()
+    
+
+#------ Start of the main block of code ------
 
 print("Traffic Light simulation programme")
+init()
 
+try:
     while True:            # Run util stopped by keyboard interrupt....Ctrl + C
+        traffic_lights()
+except (KeyboardInterrupt):
+    clean_exit()
+    
+print('All Done')
+        
+        
+        
         
