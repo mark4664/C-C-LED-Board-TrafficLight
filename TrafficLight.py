@@ -7,33 +7,34 @@
 # 10/10/2019
 
 # 19/11/19
-# Code divided into functions and methods of exiting cleanley added.
+# Code divided into functions and a method of exiting cleanley added.
 # To exit the code use <ctrl> + c or click the stop button in Thonny
 
 
 # Import additional libraries.
 from gpiozero import LED          #Using gpiozero library, LED object used for each LED
+from gpiozero import Button
 from time import sleep            #Use sleep funtion for timing, time is in seconds
 
-def init():
-    # Setup the IO pins that the LEDs are to be connected to.
-    grn_led=LED(17)       # Assign pin 17 to the green led.
-    yel_led=LED(18)       # Assign pin 18 to the yellow led.
-    red_led=LED(19)       # Assign pin 19 to the red led.
+# Setup the IO pins that the LEDs are to be connected to.
+grn_led=LED(17)       # Assign pin 17 to the green led.
+yel_led=LED(18)       # Assign pin 18 to the yellow led.
+red_led=LED(19)       # Assign pin 19 to the red led.
+btn1=Button(21)       # Assign pin 21 to button 1 (btn1)
 
 def traffic_lights():
     # Run through a single sequence of traffic lights
     red_led.on()       # Turn LED ON, set output pin 'on' this puts +3.3v on the IO pin.
-    sleep(4)           # Wait 4 seconds
+    sleep(2)           # Wait 4 seconds
     yel_led.on()       # Repeat for the other LEDs
     sleep(1)
     red_led.off()
     yel_led.off()      # Turn LED OFF, set output pin 'off' this puts 0v on the IO pin.
     grn_led.on()
-    sleep(4)
+    sleep(2)
     grn_led.off()
     yel_led.on()
-    sleep(1.5)
+    sleep(1)
     yel_led.off()
     
 def clean_exit():
@@ -41,17 +42,19 @@ def clean_exit():
     grn_led.off()
     red_led.off()
     yel_led.off()
-    
+   
 
 #------ Start of the main block of code ------
 
 print("Traffic Light simulation programme")
-init()
+#btn1.when_pressed = btn1_pressed
+
 
 try:
-    while True:            # Run util stopped by keyboard interrupt....Ctrl + C
+    while not btn1.is_pressed:    # Run utill the button is pushed
         traffic_lights()
-except (KeyboardInterrupt):
+        
+except (KeyboardInterrupt):   # Run util stopped by keyboard interrupt....Ctrl + C
     clean_exit()
     
 print('All Done')
